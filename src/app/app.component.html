@@ -16,6 +16,31 @@
   <li>
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
+
+
+  <!-- <div *ngIf="chart">
+    <canvas id="canvas">{{ chart }}</canvas>
+  </div> -->
+
+  <div *ngFor="let a of wetherData">
+    <!-- <div>{{a.dt}}</div> -->
+    <div>{{a.temp_max}}</div>
+  </div>
+
+
+  <div *ngIf="chart">
+    <canvas id="canvas">{{ chart }}</canvas>
+  </div>
+
+
+  <div>
+    <canvas id="pieChart" >{{PieChart}}</canvas>
+  </div>
+
+  <div>
+    <canvas id="ctx"></canvas>
+  </div>
+
 </ul>
 
 <router-outlet></router-outlet>
