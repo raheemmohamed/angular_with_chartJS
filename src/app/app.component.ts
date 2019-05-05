@@ -129,11 +129,22 @@ export class AppComponent implements OnInit {
               display: false
           },
           scales: {
+              // yAxes: [{
+              //     ticks: {
+              //         beginAtZero: true
+              //     }
+              // }]
+
+              xAxes: [{
+                display: false,
+                ticks: {
+                  beginAtZero: true
+                }
+              }],
               yAxes: [{
-                  ticks: {
-                      beginAtZero: true
-                  }
-              }]
+                display: false
+
+              }],
           }
         }
       });

@@ -19,6 +19,8 @@
     "@angular/platform-browser": "~7.1.0",
     "@angular/platform-browser-dynamic": "~7.1.0",
     "@angular/router": "~7.1.0",
+    "@syncfusion/ej2": "^17.1.43",
+    "@syncfusion/ej2-angular-grids": "^17.1.43",
     "chart.js": "^2.8.0",
     "core-js": "^2.5.4",
     "rxjs": "^6.5.1",
