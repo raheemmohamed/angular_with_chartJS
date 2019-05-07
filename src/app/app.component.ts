@@ -4,6 +4,7 @@ import { pipe } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import {Chart} from 'chart.js';
+import 'chartjs-plugin-datalabels';
 
 
 @Component({
@@ -15,6 +16,8 @@ export class AppComponent implements OnInit {
   chart = [];
   PieChart = [];
   wetherData = [];
+
+  horizontalbarchart;
 
   title = 'charts';
   constructor(
@@ -190,6 +193,104 @@ export class AppComponent implements OnInit {
                 }]
             }
           }
+      });
+
+
+
+
+      // horizontalbarchart
+      this.horizontalbarchart = new Chart('horizontalbarchart', {
+          type: 'horizontalBar',
+          data: {
+            labels: ['january', 'feb', 'march', 'apr', 'march'],
+            datasets: [{
+              labels: 'incident',
+              data: [11, 12, 15, 17, 18],
+              fill: false,
+              backgroundColor: [
+                'red',
+                'blue',
+                'green',
+                'yellow',
+                'orange',
+            ],
+            borderColor: [
+              'red',
+              'blue',
+              'green',
+              'yellow',
+              'orange',
+            ],
+            borderWidth: 2
+
+            }
+          ]
+          },
+          options: {
+           legend: {
+            display: false
+           },
+           tooltip: {
+             display: false
+           },
+            scales: {
+              xAxes: [{
+                stacked: true,
+                maxBarThickness: 1,
+                pointLabels: {
+                  display: false
+                },
+                gridLines: {
+                  display: false,
+                },
+                ticks: {
+                  display: false,
+                  mirror: true,
+                  min: 10,
+                  max: 20,
+                  stepSize: 1,
+                  beginAtZero: true,
+                  labelOffset: 24
+                },
+              }],
+                yAxes: [{
+                  stacked: true,
+                  minor: true,
+                  scaleLabel: {
+                    display: true,
+                    fontColor: '#666',
+                    fontSize: 20
+                  },
+                  gridLines: {
+                    display: false,
+                  },
+                  ticks: {
+                      display: false,
+                      beginAtZero: true
+                  },
+                }]
+            },
+
+            plugins: {
+              datalabels: {
+                align: 'end',
+                anchor: 'end',
+                color: function(context) {
+                 return context.dataset.backgroundColor;
+                },
+                font: function(context) {
+                 const w = context.chart.width;
+                  return {
+                    size: w < 512 ? 12 : 14
+                  };
+                },
+                formatter: function(value, context) {
+                  return context.chart.data[context.dataIndex];
+                }
+              }
+          }
+
+          },
       });
   }
 }

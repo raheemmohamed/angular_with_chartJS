@@ -18,7 +18,7 @@ import { PageService, SortService, FilterService, GroupService } from '@syncfusi
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    GridModule
+    GridModule,
   ],
   providers: [ChartService, PageService, SortService, FilterService, GroupService ],
   bootstrap: [AppComponent]
