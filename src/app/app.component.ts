@@ -6,6 +6,8 @@ import { map, catchError } from 'rxjs/operators';
 import {Chart} from 'chart.js';
 import 'chartjs-plugin-datalabels';
 
+import 'chartjs-plugin-style';
+
 
 @Component({
   selector: 'app-root',
@@ -13,15 +15,16 @@ import 'chartjs-plugin-datalabels';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  chart = [];
-  PieChart = [];
-  wetherData = [];
+  chart;
+  PieChart;
+  wetherData;
 
   horizontalbarchart;
 
   title = 'charts';
   constructor(
     private cartserive: ChartService) {
+
   }
 
   ngOnInit() {
@@ -95,7 +98,38 @@ export class AppComponent implements OnInit {
 
 
 
+    const chartColors = {
+      red: 'rgb(255, 99, 132)',
+      orange: 'rgb(255, 159, 64)',
+      yellow: 'rgb(255, 205, 86)',
+      green: 'rgb(75, 192, 192)',
+      blue: 'rgb(54, 162, 235)',
+      purple: 'rgb(153, 102, 255)',
+      grey: 'rgb(201, 203, 207)'
+    };
+    // const effectColors = {
+    //   highlight: 'rgba(255, 255, 255, 0.75)',
+    //   shadow: 'rgba(0, 0, 0, 0.5)',
+    //   glow: 'rgb(255, 255, 0)',
+    //   red: 'red'
+    // };
 
+    const effectColors = [
+      'red',
+                'yellow',
+                'blue',
+                'green',
+                'orange',
+                'lightgrey'
+    ];
+
+    const overlay = [
+      'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+    ];
     //
     // pie chart:
       this.PieChart = new Chart('pieChart', {
@@ -106,12 +140,12 @@ export class AppComponent implements OnInit {
            label: '# of Votes',
             data: [9, 7 , 3, 5, 2, 10],
             backgroundColor: [
-                'red',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+              'red',
+              'yellow',
+              'blue',
+              'green',
+              'orange',
+              'lightgrey'
             ],
             borderColor: [
                 'rgba(255,99,132,1)',
@@ -121,23 +155,45 @@ export class AppComponent implements OnInit {
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
             ],
-            borderWidth: 2
+
+
+// // shadowBlur: 10,
+// // shadowColor: 'white',
+// hoverShadowColor: effectColors,
+// hoverShadowOffsetX: 20,
+// hoverShadowOffsetY: -20,
+// bevelHighlightColor: effectColors,
+// hoverOuterGlowWidth: 10,
+// hoverOuterGlowColor: effectColors
+// // hoverBackgroundOverlayColor: overlay
+// borderWidth: 1,
+
+
+      hoverOuterGlowWidth: 40,
+
+      hoverOuterGlowColor: effectColors,
+
+      hoverInnerGlowWidth: 40,
+      hoverInnerGlowColor: 'black',
+
+
         }
       ]
         },
         options: {
-
           title: {
               text: 'Bar Chart',
               display: false
           },
+          tooltips: {
+            shadowOffsetX: 40,
+            shadowOffsetY: 3,
+            shadowColor: effectColors,
+            hoverShadowColor: 'red',
+            // bevelHighlightColor: effectColors,
+            // bevelShadowColor: effectColors,
+          },
           scales: {
-              // yAxes: [{
-              //     ticks: {
-              //         beginAtZero: true
-              //     }
-              // }]
-
               xAxes: [{
                 display: false,
                 ticks: {
